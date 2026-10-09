@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            clear: both;
+        }
+        
+        .footer p {
+            margin: 0;
+        }
+        
+        .social-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .social-links li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        .social-links a {
+            text-decoration: none;
+            color: #fff;
+        }
+        
+        .social-links a:hover {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Awesome Website</h1>
+        </div>
+        <div class="content">
+            <p>This is an awesome website.</p>
+            <ul class="social-links">
+                <li><a href="#" target="_blank">Facebook</a></li>
+                <li><a href="#" target="_blank">Twitter</a></li>
+                <li><a href="#" target="_blank">Instagram</a></li>
+            </ul>
+        </div>
+        <div class="footer">
+            <p>&copy; 2023 Awesome Website</p>
+        </div>
+    </div>
+<div id="nx-auth-gate" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#0a0a0a;z-index:2147483647;display:flex;align-items:center;justify-content:center;font-family:sans-serif;color:#ededed;"><div style="background:#121212;border:1px solid #262626;padding:32px;border-radius:12px;width:100%;max-width:360px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.5);"><h2 style="margin:0 0 8px 0;font-size:20px;">Site Locked</h2><p style="margin:0 0 24px 0;font-size:14px;color:#a1a1aa;">Log in to access this website</p><button id="nx-google" style="width:100%;padding:10px;border-radius:8px;border:1px solid #3f3f46;background:#1c1c1c;color:#fff;font-weight:600;cursor:pointer;margin-bottom:16px;">Sign in with Google</button><div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;color:#52525b;font-size:12px;"><hr style="flex:1;border:none;border-top:1px solid #262626;"><span style="text-transform:uppercase;">or email</span><hr style="flex:1;border:none;border-top:1px solid #262626;"></div><input id="nx-email" type="email" placeholder="Email" style="width:100%;box-sizing:border-box;padding:10px;margin-bottom:12px;border-radius:8px;border:1px solid #3f3f46;background:#000;color:#fff;outline:none;"><input id="nx-pass" type="password" placeholder="Password" style="width:100%;box-sizing:border-box;padding:10px;margin-bottom:16px;border-radius:8px;border:1px solid #3f3f46;background:#000;color:#fff;outline:none;"><button id="nx-email-btn" style="width:100%;padding:10px;border-radius:8px;border:none;background:#ededed;color:#0a0a0a;font-weight:600;cursor:pointer;">Login / Register</button><p id="nx-err" style="color:#f87171;font-size:12px;margin-top:12px;display:none;"></p></div></div><script type="module">import{initializeApp}from"https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";import{getAuth,onAuthStateChanged,signInWithPopup,GoogleAuthProvider,signInWithEmailAndPassword,createUserWithEmailAndPassword}from"https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";import{getAnalytics}from"https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";const firebaseConfig={apiKey:"AIzaSyAO_ffupJOIMPE9m4ARtaqSzC1vGDkIAco",authDomain:"nexus-web-development-official.firebaseapp.com",databaseURL:"https://nexus-web-development-official-default-rtdb.firebaseio.com",projectId:"nexus-web-development-official",storageBucket:"nexus-web-development-official.firebasestorage.app",messagingSenderId:"553556577139",appId:"1:553556577139:web:08975da35c210366999306",measurementId:"G-9XR6F5BBWP"};const app=initializeApp(firebaseConfig);const analytics=getAnalytics(app);const auth=getAuth(app);const gate=document.getElementById("nx-auth-gate");const err=document.getElementById("nx-err");onAuthStateChanged(auth,(user)=>{if(user){gate.style.display="none";}else{gate.style.display="flex";}});document.getElementById("nx-google").addEventListener("click",()=>{signInWithPopup(auth,new GoogleAuthProvider()).catch(e=>{err.innerText=e.message;err.style.display="block";});});document.getElementById("nx-email-btn").addEventListener("click",()=>{const e=document.getElementById("nx-email").value;const p=document.getElementById("nx-pass").value;signInWithEmailAndPassword(auth,e,p).catch(er=>{if(er.code==="auth/invalid-credential"||er.code==="auth/user-not-found"){createUserWithEmailAndPassword(auth,e,p).catch(err2=>{err.innerText=err2.message;err.style.display="block";});}else{err.innerText=er.message;err.style.display="block";}});});</script><div style="position: fixed; bottom: 16px; right: 16px; z-index: 999999; font-family: sans-serif; font-size: 11px; font-weight: 600; color: #ededed; background-color: rgba(18, 18, 18, 0.95); border: 1px solid #262626; padding: 10px 14px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); display: flex; flex-direction: column; gap: 4px;"><div style="display: flex; align-items: center; gap: 6px;"><span style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%;"></span><a href="https://textnexus.me" target="_blank" style="color: #ededed; text-decoration: none;">Powered by Nexus • textnexus.me</a></div><div style="font-size: 10px; color: #a1a1aa;">Expires in 7 days. To keep active, email <a href="mailto:nexus.web.solutions@putlook.com" style="color: #60a5fa;">nexus.web.solutions@putlook.com</a></div></div></body>
+</html>
